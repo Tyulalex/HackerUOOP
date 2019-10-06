@@ -5,6 +5,7 @@ public class Conference {
     String topic;
     static int PERIOD;
     final static String IT_CONFERENCE_TOPIC = "web programming";
+    static Conference IT_CONFERENCE;
 
     public Conference(String topic) {
         this.topic = topic;
@@ -22,7 +23,7 @@ public class Conference {
     }
 
     void showTopic() {
-        System.out.println(this.topic);
+        System.out.println(this.getTopic());
     }
 
     static void showPeriod() {
@@ -30,7 +31,10 @@ public class Conference {
     }
 
     static Conference itConference() {
-        return new Conference(IT_CONFERENCE_TOPIC);
+        if (IT_CONFERENCE == null) {
+            IT_CONFERENCE = new Conference(IT_CONFERENCE_TOPIC);
+        }
+        return IT_CONFERENCE;
     }
 
     public static void main(String[] args) {
