@@ -4,6 +4,7 @@ public class Conference {
 
     String topic;
     static int PERIOD;
+    final static String IT_CONFERENCE_TOPIC = "web programming";
 
     public Conference(String topic) {
         this.topic = topic;
@@ -29,7 +30,7 @@ public class Conference {
     }
 
     static Conference itConference() {
-        return new Conference("web programming");
+        return new Conference(IT_CONFERENCE_TOPIC);
     }
 
     public static void main(String[] args) {
