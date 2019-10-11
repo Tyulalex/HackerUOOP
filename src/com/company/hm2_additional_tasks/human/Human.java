@@ -1,4 +1,4 @@
-package com.company.hm2_additional_tasks;
+package com.company.hm2_additional_tasks.human;
 
 public class Human {
 
