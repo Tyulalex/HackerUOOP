@@ -47,10 +47,10 @@ public class Human {
 
     @Override
     public String toString() {
-        String base_message = String.format(TO_STRING_BASE_MESSAGE, this.getName(), this.getGender(), this.getAge());
+        String baseMessage = String.format(TO_STRING_BASE_MESSAGE, this.getName(), this.getGender(), this.getAge());
         return (this.getFather() == null && this.getMother() == null)
-                ? base_message
-                : base_message + String.format(
+                ? baseMessage
+                : baseMessage + String.format(
                 TO_STRING_IF_PARENT_NOT_NULL_MESSAGE, this.getFather().getName(), this.getMother().getName());
     }
 
