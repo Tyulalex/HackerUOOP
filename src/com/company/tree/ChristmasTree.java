@@ -8,6 +8,6 @@ public class ChristmasTree extends ConiferTree {
 
     @Override
     public String toString() {
-        return "ChristmasTree - " + this.hasLeaves();
+        return "Рождественское дерево - " + this.hasLeaves();
     }
 }
