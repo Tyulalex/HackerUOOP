@@ -2,10 +2,10 @@ package com.company.abstractclass;
 
 interface FlatFigure extends Figure {
 
-    abstract void flatten();
+    void flatten();
 
     @Override
-    default void draw(){
+    default void draw() {
         System.out.println("flat figure draw");
     }
 }
