@@ -7,4 +7,5 @@ public interface Photostudio {
     void getLicense();
 
     void makeSignboard();
+
 }
