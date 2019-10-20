@@ -5,6 +5,7 @@ public class Orchestra {
     static Orchestra ORCHESTRA = new Orchestra();
 
     static class SymphonicOrchestra {
+
         void playSymphonicMusic() {
             System.out.println("play symphonic music");
         }
@@ -12,9 +13,8 @@ public class Orchestra {
         void startAConcert() {
             inviteConductor();
             ORCHESTRA.chooseAConcertHall();
-            playSymphonicMusic();
+            new FolkOrchestra().playFolkMusic();
         }
-
     }
 
     static class FolkOrchestra {
@@ -26,7 +26,7 @@ public class Orchestra {
         void startAConcert() {
             inviteConductor();
             ORCHESTRA.chooseAConcertHall();
-            playFolkMusic();
+            new SymphonicOrchestra().playSymphonicMusic();
         }
     }
 
