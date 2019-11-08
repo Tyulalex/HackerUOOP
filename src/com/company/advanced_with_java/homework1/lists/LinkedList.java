@@ -1,5 +1,7 @@
 package com.company.advanced_with_java.homework1.lists;
 
+import java.util.NoSuchElementException;
+
 /**
  * boolean add(E item) - Добавляет указанный элемент в конец этого списка
  * void clear() - Удаляет все элементы из этого списка (необязательная операция)
@@ -13,14 +15,13 @@ package com.company.advanced_with_java.homework1.lists;
 public class LinkedList<E> {
 
     private Link first;
-    private Link next;
     private int size;
 
     LinkedList() {
 
     }
 
-    class Link<E> {
+    class Link {
         E value;
         Link next;
 
@@ -61,13 +62,71 @@ public class LinkedList<E> {
         return false;
     }
 
-    boolean isEmpty(){
+    boolean isEmpty() {
         return this.first == null;
     }
 
     E remove(int indx) {
-        if (indx<0){
-
+        if (indx < 0 || indx >= this.size || this.isEmpty()) {
+            throw new NoSuchElementException();
         }
+        if (indx == 0) {
+            return removeFirstElement();
+        }
+        int i = 0;
+        Link current = this.first;
+        Link previous = null;
+        while (i != indx) {
+            previous = current;
+            current = current.next;
+            i++;
+            if (i >= this.size) {
+                throw new NoSuchElementException();
+            }
+        }
+        Link itemToRemove = current;
+        previous.next = current.next;
+        this.size--;
+        return (E) itemToRemove.value;
+    }
+
+    private E removeFirstElement() {
+        Link itemToRemove = this.first;
+        this.first = this.first.next;
+        this.size--;
+        return itemToRemove.value;
+    }
+
+
+    E remove(E element) {
+        if (this.first == null)
+            throw new NoSuchElementException();
+        if (this.first.value.equals(element)) {
+            return removeFirstElement();
+        }
+        Link current = this.first;
+        Link previous = this.first;
+        while (current != null) {
+            if (current.value.equals(element)) {
+                Link itemToRemove = this.first;
+                previous.next = current.next;
+                this.size--;
+                return (E) itemToRemove.value;
+            }
+            previous = current;
+            current = current.next;
+        }
+        throw new NoSuchElementException();
+    }
+
+    Object[] toArray() {
+        Object[] array = new Object[this.size];
+        Link current = this.first;
+        for (int i = 0; i < this.size; i++) {
+            array[i] = current;
+            current = current.next;
+        }
+
+        return array;
     }
 }

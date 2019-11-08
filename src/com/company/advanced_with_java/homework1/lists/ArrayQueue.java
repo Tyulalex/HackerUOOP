@@ -9,8 +9,6 @@ import java.util.NoSuchElementException;
  * void clear() - Удаляет все элементы из этой очереди
  * boolean contains(Object element) - возвращает true, если эта очередь содержит указанный элемент
  * boolean isEmpty()  - возвращает true, если эта очередь не содержит элементов
- *
- * @param <E>
  */
 
 
@@ -32,8 +30,8 @@ public class ArrayQueue<E> {
 
     //вставлять в конец очереди
     boolean add(E e) {
-        if (this.rearIndex == this.maxSize - 1 && this.frontIndex > 0) {
-            this.rearIndex = -1;
+        if (this.rearIndex == this.maxSize) {
+            throw new ArrayIndexOutOfBoundsException();
         }
         this.array[++rearIndex] = e;
         this.size++;
@@ -41,10 +39,11 @@ public class ArrayQueue<E> {
     }
 
     E poll() {
-        E temp = this.array[frontIndex++];
-        if (frontIndex == maxSize) {
-            this.frontIndex = 0;
+        if (isEmpty()) {
+            throw new NoSuchElementException("queue is empty");
         }
+        E temp = this.array[frontIndex++];
+        this.size--;
         return temp;
     }
 
@@ -78,21 +77,5 @@ public class ArrayQueue<E> {
     }
 
     public static void main(String[] args) {
-        ArrayQueue<String> arrayQueue = new ArrayQueue(4);
-
-        arrayQueue.add("1");
-        arrayQueue.add("2");
-        arrayQueue.add("3");
-        arrayQueue.add("4");
-        try {
-            arrayQueue.add("5");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
-        System.out.println(arrayQueue.peek());
-        System.out.println(arrayQueue.poll());
-        System.out.println(arrayQueue.poll());
-        arrayQueue.add("6");
-
     }
 }
